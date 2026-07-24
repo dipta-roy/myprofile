@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
+
+body {
+	background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	background-attachment: fixed;
+	margin: 0;
+	padding: 0;
+	font-family: 'Outfit', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	color: #1e293b;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 1300px;
+	padding: 20px;
+	box-sizing: border-box;
+	gap: 30px;
+	perspective: 1200px;
+}
+
+.info-panel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	width: 100%;
+	max-width: 400px;
+}
+
+/* Clock Styles */
+.clock {
+	width: 100%;
+	padding: 20px;
+	color: #1e293b;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 20px;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 0px rgba(203, 213, 225, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+	box-sizing: border-box;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.clock:hover {
+	transform: translateY(-3px) translateZ(10px);
+	box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12), 0 6px 0px rgba(203, 213, 225, 0.9), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+.clock ul {
+	padding: 0;
+	list-style: none;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin: 0;
+	align-items: center;
+}
+
+.clock ul li {
+	font-size: 3em;
+	text-align: center;
+	font-weight: 700;
+	text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+	font-variant-numeric: tabular-nums;
+	min-width: 1.2em;
+	display: inline-block;
+}
+
+#Date {
+	font-size: 1.2em;
+	text-align: center;
+	padding-bottom: 10px;
+	font-weight: 300;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+/* Animation */
+#point {
+	position: relative;
+	animation: mymove 1s ease infinite;
+	padding: 0 5px;
+	color: #4fa7d4;
+}
+
+@keyframes mymove {
+	0% {
+		opacity: 1.0;
+		text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+	}
+
+	50% {
+		opacity: 0;
+		text-shadow: none;
+	}
+
+	100% {
+		opacity: 1.0;
+		text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+	}
+}
+
+/* Card 3D Elevate Styles */
+.captured-panel, .history-panel {
+	width: 100%;
+	background: rgba(255, 255, 255, 0.45) !important;
+	backdrop-filter: blur(20px) !important;
+	-webkit-backdrop-filter: blur(20px) !important;
+	border-radius: 20px !important;
+	border: 1px solid rgba(255, 255, 255, 0.6) !important;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 4px 0px rgba(203, 213, 225, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+	padding: 16px 20px !important;
+	box-sizing: border-box !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.captured-panel {
+	height: 130px !important;
+	min-height: 130px !important;
+	max-height: 130px !important;
+}
+
+.history-panel {
+	height: 280px !important;
+	min-height: 280px !important;
+	max-height: 280px !important;
+	align-items: stretch !important;
+}
+
+.panel-header {
+	font-weight: 700 !important;
+	margin-bottom: 8px !important;
+	color: #1e293b !important;
+	text-transform: uppercase !important;
+	letter-spacing: 1.2px !important;
+	font-size: 0.85em !important;
+	opacity: 0.75 !important;
+	text-align: center !important;
+	width: 100% !important;
+	flex-shrink: 0 !important;
+}
+
+#capturedPieces {
+	flex-grow: 1;
+	font-size: 2em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items: center;
+	gap: 4px;
+	font-family: 'Segoe UI Symbol', 'Noto Sans Symbols 2', serif;
+	width: 100%;
+	overflow-y: auto;
+}
+
+#moveHistoryList {
+	flex-grow: 1;
+	overflow-y: auto;
+	font-family: 'Outfit', sans-serif;
+	font-size: 1em;
+	padding-right: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	width: 100%;
+}
+
+.reload-container {
+	width: 100%;
+}
+
+.captured-panel:hover, .history-panel:hover {
+	transform: translateY(-3px) translateZ(10px);
+	box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12), 0 6px 0px rgba(203, 213, 225, 0.9), inset 0 1px 1px rgba(255, 255, 255, 1) !important;
+}
+
+/* Button */
+.myButton {
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 50px;
+	border: 1px solid rgba(255, 255, 255, 0.8);
+	display: inline-block;
+	cursor: pointer;
+	color: #1e293b;
+	font-family: 'Outfit', sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 14px 30px;
+	text-decoration: none;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08), 0 3px 0px rgba(203, 213, 225, 0.9), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	width: 100%;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.myButton:hover {
+	transform: translateY(-2px);
+	background: rgba(255, 255, 255, 0.85);
+	box-shadow: 0 12px 28px rgba(59, 130, 246, 0.25), 0 4px 0px rgba(148, 163, 184, 0.9), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+.myButton:active {
+	transform: translateY(2px) !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 1px 0px rgba(203, 213, 225, 0.9) !important;
+}
+
+/* Game Container */
+#content {
+	margin-top: 0;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	flex-grow: 1;
+	perspective: 1200px;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 900px) {
+	.main-container {
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 50px;
+		padding-top: 40px;
+	}
+
+	.info-panel {
+		width: 360px;
+		order: 2;
+	}
+
+	#content {
+		order: 1;
+	}
+}
+
+/* Chessboard Styling & Increased Size */
+#game {
+	display: flex;
+	justify-content: center;
+}
+
+#game table {
+	counter-reset: rank 9;
+	margin: 0 auto !important;
+	color: #1e293b !important;
+	border: 2px solid rgba(255, 255, 255, 0.8) !important;
+	background: rgba(255, 255, 255, 0.35) !important;
+	backdrop-filter: blur(25px) !important;
+	-webkit-backdrop-filter: blur(25px) !important;
+	border-radius: 20px !important;
+	box-shadow: 
+		0 20px 45px rgba(0, 0, 0, 0.12),
+		0 8px 16px rgba(0, 0, 0, 0.08),
+		inset 0 1px 2px rgba(255, 255, 255, 0.9) !important;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+	overflow: hidden !important;
+	border-spacing: 0 !important;
+	table-layout: fixed !important;
+	width: 672px !important;
+	height: 672px !important;
+}
+
+#game table:hover {
+	box-shadow: 
+		0 28px 56px rgba(0, 0, 0, 0.16),
+		0 12px 24px rgba(0, 0, 0, 0.1),
+		inset 0 1px 2px rgba(255, 255, 255, 1) !important;
+}
+
+@media (min-width: 1200px) {
+	#game table {
+		width: 720px !important;
+		height: 720px !important;
+	}
+	#game tr {
+		height: 90px !important;
+		max-height: 90px !important;
+	}
+	#game td {
+		width: 90px !important;
+		height: 90px !important;
+		min-width: 90px !important;
+		min-height: 90px !important;
+		max-width: 90px !important;
+		max-height: 90px !important;
+		line-height: 90px !important;
+		font-size: 80px !important;
+	}
+}
+
+#game tr {
+	height: 84px !important;
+	max-height: 84px !important;
+}
+
+#game td {
+	position: relative !important;
+	box-sizing: border-box !important;
+	background: rgba(255, 255, 255, 0.2) !important;
+	border: 1px solid rgba(255, 255, 255, 0.4) !important;
+	transition: background 0.2s ease, box-shadow 0.2s ease !important;
+	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+	font-size: 74px !important;
+	width: 84px !important;
+	height: 84px !important;
+	min-width: 84px !important;
+	min-height: 84px !important;
+	max-width: 84px !important;
+	max-height: 84px !important;
+	line-height: 84px !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	overflow: hidden !important;
+	font-family: 'Segoe UI Symbol', 'Noto Sans Symbols 2', serif !important;
+}
+
+#game td:hover {
+	box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Alternate squares */
+#game tr:nth-child(odd) td:nth-child(even),
+#game tr:nth-child(even) td:nth-child(odd) {
+	background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Selected square highlight */
+#game td[lang="0"] {
+	outline: none !important;
+	box-shadow: inset 0 0 0 2px #3b82f6, inset 0 0 20px rgba(59, 130, 246, 0.6) !important;
+	background: rgba(59, 130, 246, 0.4) !important;
+	z-index: 20;
+}
+
+/* Legal move highlights */
+#content #game td.move-highlight {
+	background: rgba(234, 179, 8, 0.7) !important;
+	backdrop-filter: blur(8px) !important;
+	-webkit-backdrop-filter: blur(8px) !important;
+	box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(234, 179, 8, 0.6) !important;
+}
+
+#content #game td.capture-highlight {
+	background: rgba(239, 68, 68, 0.7) !important;
+	backdrop-filter: blur(8px) !important;
+	-webkit-backdrop-filter: blur(8px) !important;
+	box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(239, 68, 68, 0.6) !important;
+}
+
+/* Coordinate Labels (A-H, 1-8) */
+#game tr {
+	counter-increment: rank -1;
+}
+
+#game tr:last-child {
+	counter-reset: file 0;
+}
+
+#game tr td:first-child::before {
+	content: counter(rank);
+	position: absolute;
+	left: 4px;
+	top: 2px;
+	font-size: clamp(10px, 3vw, 14px);
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	color: rgba(30, 41, 59, 0.4);
+	z-index: 10;
+	line-height: 1;
+	text-shadow: none !important;
+}
+
+#game tr:last-child td {
+	counter-increment: file 1;
+}
+
+#game tr:last-child td::after {
+	content: counter(file, upper-alpha);
+	position: absolute;
+	right: 4px;
+	bottom: 2px;
+	font-size: clamp(10px, 3vw, 14px);
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	color: rgba(30, 41, 59, 0.4);
+	z-index: 10;
+	line-height: 1;
+	text-shadow: none !important;
+}
+
+/* Mobile Optimization for Chessboard */
+@media (max-width: 600px) {
+	#game {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+	#game table {
+		width: 95vw !important;
+		height: 95vw !important;
+		border-width: 4px !important;
+	}
+
+	#game td {
+		font-size: 11vw !important;
+		width: 12.5% !important;
+		height: 12.5% !important;
+	}
+
+	.clock ul li {
+		font-size: 2em;
+	}
+
+	#Date {
+		font-size: 1em;
+	}
+
+	.main-container {
+		padding: 10px;
+		gap: 20px;
+	}
+
+	.info-panel {
+		max-width: 100%;
+	}
+}

@@ -1,4 +1,20 @@
 // ==========================================
+// TIME-BASED THEME SCHEDULING
+// ==========================================
+function applyTimeBasedTheme() {
+    const currentHour = new Date().getHours();
+    // 6 AM (6) to 6 PM (18) is Light Mode
+    if (currentHour >= 6 && currentHour < 18) {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+}
+
+// Apply theme immediately on load
+applyTimeBasedTheme();
+
+// ==========================================
 // NAVIGATION SCROLL EFFECTS
 // ==========================================
 const navbar = document.getElementById('navbar');
@@ -200,8 +216,8 @@ if (heroSubtitle) {
     const text = heroSubtitle.textContent;
     const titles = [
         'Product Security Specialist',
-        'Healthcare Security Expert',
-        'Threat Modeling Professional'
+        'MedTech Security Expert',
+        'AI Security Specialist'
     ];
 
     let titleIndex = 0;
@@ -367,55 +383,306 @@ document.addEventListener('mousedown', () => {
 });
 
 // ==========================================
-// GITHUB PROJECT FILTERING
 // ==========================================
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.github-card');
+// DYNAMIC DATA LOADING
+// ==========================================
+function loadPortfolioData() {
+    try {
+        if (typeof portfolioData === 'undefined') {
+            throw new Error('Portfolio data not found. Ensure portfolio.js is loaded.');
+        }
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active class to clicked button
-        btn.classList.add('active');
+        renderGithubProjects(portfolioData.github_projects);
+        renderSoftwareDownloads(portfolioData.software_downloads);
 
-        const filterValue = btn.getAttribute('data-filter');
+        // Initialize interactive elements after rendering
+        initDynamicInteractions();
+    } catch (error) {
+        console.error('Error loading portfolio data:', error);
+    }
+}
 
-        projectCards.forEach(card => {
-            const categories = card.getAttribute('data-category') ? card.getAttribute('data-category').split(' ') : [];
-            if (filterValue === 'all' || categories.includes(filterValue)) {
-                card.classList.remove('hidden');
-                // Add animation for appearing
-                card.style.animation = 'fadeIn 0.5s ease-out forwards';
-            } else {
-                card.classList.add('hidden');
+function renderGithubProjects(projects) {
+    const container = document.getElementById('github-grid-container');
+    if (!container) return;
+
+    container.innerHTML = projects.map(project => `
+        <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="github-card" data-category="${project.categories}">
+            <div class="github-card-header">
+                <i class="fab fa-github github-icon"></i>
+                <span class="github-stars">⭐</span>
+            </div>
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="github-footer">
+                <span class="github-language">${project.language}</span>
+                <span class="github-link">View on GitHub →</span>
+            </div>
+        </a>
+    `).join('');
+}
+
+function renderSoftwareDownloads(downloads) {
+    const container = document.getElementById('downloads-grid-container');
+    if (!container) return;
+
+    container.innerHTML = downloads.map(dl => {
+        let checksumHtml = dl.checksum
+            ? `<div class="checksum-value" title="Click to copy SHA-256 hash">SHA-256: <code>${dl.checksum}</code></div>`
+            : '';
+
+        let vtHtml = dl.vtLink
+            ? `<a href="${dl.vtLink}" class="vt-link" target="_blank" rel="noopener noreferrer"><i class="fas fa-shield-alt"></i> VirusTotal</a>`
+            : '';
+
+        let actionsHtml = dl.vtLink
+            ? `<div class="footer-actions">${vtHtml}<a href="${dl.downloadUrl}" class="download-link">Download Now →</a></div>`
+            : `<span class="download-link">Download Now →</span>`; // Fallback for certs without VT link
+
+        return `
+        <div class="${!dl.checksum ? 'download-card' : 'download-card'}">
+            <div class="download-card-header">
+                <i class="${dl.icon} download-icon"></i>
+                <span class="version-badge">${dl.version}</span>
+            </div>
+            <h3>${dl.title}</h3>
+            <p>${dl.description}</p>
+            ${checksumHtml}
+            <div class="download-footer">
+                <span class="file-type">${dl.fileType}</span>
+                ${dl.vtLink ? actionsHtml : `<a href="${dl.downloadUrl}" class="download-link">Download Now →</a>`}
+            </div>
+        </div>
+        `;
+    }).join('');
+}
+
+// ==========================================
+// INTERACTIVE LOGIC FOR DYNAMIC ELEMENTS
+// ==========================================
+function initDynamicInteractions() {
+    // 1. GITHUB PROJECT FILTERING
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.github-card');
+    const githubGrid = document.getElementById('github-grid-container');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.classList.contains('active')) return; // Prevent re-filtering same category
+
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            // Smooth fade out
+            githubGrid.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            githubGrid.style.opacity = '0';
+            githubGrid.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category') ? card.getAttribute('data-category').split(' ') : [];
+
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.classList.remove('hidden');
+                        card.style.animation = 'none'; // reset individual animation
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Smooth fade back in
+                githubGrid.style.opacity = '1';
+                githubGrid.style.transform = 'translateY(0)';
+            }, 300);
+        });
+    });
+
+    // 2. CLICK TO COPY CHECKSUM
+    const checksumElements = document.querySelectorAll('.checksum-value');
+    checksumElements.forEach(element => {
+        element.addEventListener('click', () => {
+            const codeElement = element.querySelector('code');
+            if (codeElement) {
+                const hashText = codeElement.textContent.trim();
+                navigator.clipboard.writeText(hashText).then(() => {
+                    const originalHTML = element.innerHTML;
+                    element.innerHTML = `<span style="color: var(--color-primary-light); font-weight: bold;"><i class="fas fa-check-circle"></i> Copied Hash!</span>`;
+                    element.style.pointerEvents = 'none';
+
+                    setTimeout(() => {
+                        element.innerHTML = originalHTML;
+                        element.style.pointerEvents = 'auto';
+                    }, 1500);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
             }
         });
     });
-});
+}
 
 // ==========================================
-// CLICK TO COPY CHECKSUM
+// FLOATING COMPANION & SECTION TRACKING
 // ==========================================
-const checksumElements = document.querySelectorAll('.checksum-value');
+function initFloatingCompanion() {
+    const profileCard = document.querySelector('.profile-card');
+    const heroSection = document.getElementById('home');
+    const sections = document.querySelectorAll('section');
 
-checksumElements.forEach(element => {
-    element.addEventListener('click', () => {
-        const codeElement = element.querySelector('code');
-        if (codeElement) {
-            const hashText = codeElement.textContent.trim();
-            navigator.clipboard.writeText(hashText).then(() => {
-                const originalHTML = element.innerHTML;
-                element.innerHTML = `<span style="color: var(--color-primary-light); font-weight: bold;"><i class="fas fa-check-circle"></i> Copied Hash!</span>`;
-                element.style.pointerEvents = 'none';
-                
-                setTimeout(() => {
-                    element.innerHTML = originalHTML;
-                    element.style.pointerEvents = 'auto';
-                }, 1500);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-            });
+    if (!profileCard || !heroSection) return;
+
+    // 1. Detect scrolling past hero to toggle floating mode
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // When hero is out of view, activate floating companion
+            if (!entry.isIntersecting && window.scrollY > 300) {
+                profileCard.classList.add('floating-companion');
+            } else {
+                profileCard.classList.remove('floating-companion');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    heroObserver.observe(heroSection);
+
+    // 2. Detect section changes to trigger micro-animations and speech bubble
+    let bubbleTimeout;
+    const speechBubble = document.getElementById('companionSpeechBubble');
+
+    const showBubbleMessage = (message) => {
+        if (!speechBubble) return;
+        speechBubble.innerHTML = message;
+        speechBubble.classList.add('show-bubble');
+
+        clearTimeout(bubbleTimeout);
+        bubbleTimeout = setTimeout(() => {
+            speechBubble.classList.remove('show-bubble');
+        }, 4000); // Hide after 4 seconds
+    };
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && profileCard.classList.contains('floating-companion')) {
+                const sectionId = entry.target.id;
+
+                // Clear existing animation classes
+                profileCard.classList.remove('companion-bounce', 'companion-spin');
+
+                // Trigger reflow to restart animation
+                void profileCard.offsetWidth;
+
+                // Apply different animations based on section
+                if (sectionId === 'github' || sectionId === 'downloads') {
+                    profileCard.classList.add('companion-spin');
+                } else if (sectionId) {
+                    profileCard.classList.add('companion-bounce');
+                }
+
+                // Alternate left and right sides smoothly
+                const leftSideSections = ['experience', 'github', 'certifications'];
+                if (leftSideSections.includes(sectionId)) {
+                    profileCard.classList.add('companion-left-side');
+                } else {
+                    profileCard.classList.remove('companion-left-side');
+                }
+
+                // Show dynamic speech bubble message based on section
+                let message = "";
+                switch (sectionId) {
+                    case 'about':
+                        message = "Hey! This is About Me";
+                        break;
+                    case 'experience':
+                        message = "Check out my work history!";
+                        break;
+                    case 'skills':
+                        message = "Here are my core skills";
+                        break;
+                    case 'github':
+                        message = "Looking for my OpenSource work?";
+                        break;
+                    case 'downloads':
+                        message = "Download my tools here";
+                        break;
+                    case 'certifications':
+                        message = "My verified credentials";
+                        break;
+                    case 'contact':
+                        message = "Let's get in touch!";
+                        break;
+                }
+
+                if (message) {
+                    showBubbleMessage(message);
+                }
+            }
+        });
+    }, { threshold: 0.3 });
+
+    sections.forEach(section => {
+        if (section.id !== 'home') {
+            sectionObserver.observe(section);
         }
     });
+
+    // 3. Click companion to scroll back to top
+    profileCard.addEventListener('click', () => {
+        if (profileCard.classList.contains('floating-companion')) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    });
+}
+
+// ==========================================
+// SCROLL-REACTIVE BACKGROUND ORBS
+// ==========================================
+function initScrollReactiveOrbs() {
+    const orb1 = document.querySelector('.orb-1');
+    const orb2 = document.querySelector('.orb-2');
+    const orb3 = document.querySelector('.orb-3');
+
+    if (!orb1 || !orb2 || !orb3) return;
+
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = scrollY / maxScroll; // 0 to 1
+
+                // Each orb moves in different directions and at different speeds
+                // Using sin/cos to create organic, looping movement paths
+                const angle1 = scrollPercent * Math.PI * 4; // 2 full cycles
+                const angle2 = scrollPercent * Math.PI * 3;
+                const angle3 = scrollPercent * Math.PI * 5;
+
+                const x1 = Math.sin(angle1) * 150 + scrollPercent * 200;
+                const y1 = Math.cos(angle1) * 80 - scrollY * 0.05;
+
+                const x2 = Math.cos(angle2) * -200 + scrollPercent * -150;
+                const y2 = Math.sin(angle2) * 120 - scrollY * 0.08;
+
+                const x3 = Math.sin(angle3) * 180;
+                const y3 = Math.cos(angle3) * -100 - scrollY * 0.03;
+
+                orb1.style.transform = `translate(${x1}px, ${y1}px) scale(${1 + scrollPercent * 0.3})`;
+                orb2.style.transform = `translate(${x2}px, ${y2}px) scale(${1 - scrollPercent * 0.2})`;
+                orb3.style.transform = `translate(${x3}px, ${y3}px) scale(${1 + Math.sin(angle3) * 0.2})`;
+
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+// Start loading process when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadPortfolioData();
+    initFloatingCompanion();
+    initScrollReactiveOrbs();
 });

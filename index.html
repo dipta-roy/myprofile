@@ -63,6 +63,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-2EZ7F16X02"></script>
     <script>
@@ -72,7 +73,11 @@
         gtag('config', 'G-2EZ7F16X02');
     </script>
     <noscript>
-        <style>#preloader { display: none !important; }</style>
+        <style>
+            #preloader {
+                display: none !important;
+            }
+        </style>
     </noscript>
 </head>
 
@@ -126,10 +131,6 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <!--<div class="hero-badge">
-                        <span class="badge-dot"></span>
-                        Available for Collaboration
-                    </div>-->
                     <h1 class="hero-title">
                         Hi, I'm <span class="gradient-text">Dipta Roy</span>
                     </h1>
@@ -139,8 +140,6 @@
                         threat modeling, vulnerability assessments, and FDA compliant technology. Building secure
                         architectures that protect millions of users.
                     </p>
-
-                    <!-- Social Media Links -->
                     <div class="social-links">
                         <a href="https://github.com/dipta-roy" target="_blank" rel="noopener noreferrer"
                             class="social-link" title="GitHub" aria-label="GitHub">
@@ -151,7 +150,6 @@
                             <i class="fab fa-linkedin"></i>
                         </a>
                     </div>
-
                     <div class="hero-stats">
                         <div class="stat-item">
                             <div class="stat-value">9+</div>
@@ -190,7 +188,9 @@
                             <span class="badge-emoji">🏥</span>
                             <span>Healthcare & Med-Tech</span>
                         </div>
-
+                        <div class="companion-speech-bubble" id="companionSpeechBubble">
+                            Hello! 👋
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,7 +200,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
             <div class="section-header">
@@ -268,7 +267,6 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
     <section id="experience" class="experience-section">
         <div class="container">
             <div class="section-header">
@@ -418,7 +416,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section id="skills" class="skills-section">
         <div class="container">
             <div class="section-header">
@@ -550,7 +547,6 @@
         </div>
     </section>
 
-    <!-- GitHub Projects Section -->
     <section id="github" class="github-section">
         <div class="container">
             <div class="section-header">
@@ -558,7 +554,6 @@
                 <h2 class="section-title">GitHub Projects</h2>
                 <p class="section-subtitle">Explore my open-source contributions and personal projects</p>
             </div>
-
             <div class="project-filters">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="security-tools">Security Tools</button>
@@ -566,146 +561,7 @@
                 <button class="filter-btn" data-filter="windows">Windows Security</button>
                 <button class="filter-btn" data-filter="utilities">Utilities</button>
             </div>
-
-            <div class="github-grid">
-                <a href="https://github.com/dipta-roy/PlanIFlow" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="utilities">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>PlanIFlow</h3>
-                    <p>Advanced project planning and workflow management tool</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/SecureVault" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="security-tools">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>SecureVault</h3>
-                    <p>Local password manager with advanced security features</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/TwinScope" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="utilities">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>TwinScope</h3>
-                    <p>TwinScope is a cross-platform file and folder comparison tool</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/Windows-Analyzer" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="windows">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>Windows Analyzer</h3>
-                    <p>Comprehensive Windows system analysis and diagnostics tool</p>
-                    <div class="github-footer">
-                        <span class="github-language">PowerShell</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/CodeSigningUtility" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="security-tools">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>Code Signing Utility</h3>
-                    <p>Code signing utility for secure software distribution</p>
-                    <div class="github-footer">
-                        <span class="github-language">PowerShell</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/FaceGallery" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="ai">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>FaceGallery</h3>
-                    <p>FaceGallery is a cross-platform, privacy-focused offline desktop photo manager.</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/SBOM_Parser" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="security-tools">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>SBOM Parser</h3>
-                    <p>A clean, modern desktop GUI tool to parse SBOM files and export them to CSV.</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-
-                <a href="https://github.com/dipta-roy/MicrosoftBaselineScan" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="windows">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>Microsoft Baseline Scan</h3>
-                    <p>Security baseline scanner for Microsoft environments</p>
-                    <div class="github-footer">
-                        <span class="github-language">PowerShell</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-                <a href="https://github.com/dipta-roy/ThreatPilot" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="ai security-tools">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>ThreatPilot</h3>
-                    <p>ThreatPilot is an advanced, AI-driven threat modeling application designed specifically for cyber
-                        security architects and engineers</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
-				<a href="https://github.com/dipta-roy/AdvLens" target="_blank" rel="noopener noreferrer"
-                    class="github-card" data-category="ai security-tools">
-                    <div class="github-card-header">
-                        <i class="fab fa-github github-icon"></i>
-                        <span class="github-stars">⭐</span>
-                    </div>
-                    <h3>AdvLens</h3>
-                    <p>AdvLens: Interactive Adversarial Machine Learning Lab For Educational Purposes</p>
-                    <div class="github-footer">
-                        <span class="github-language">Python</span>
-                        <span class="github-link">View on GitHub →</span>
-                    </div>
-                </a>
+            <div id="github-grid-container" class="github-grid">
             </div>
             <div class="github-cta">
                 <a href="https://github.com/dipta-roy" target="_blank" rel="noopener noreferrer"
@@ -716,7 +572,6 @@
         </div>
     </section>
 
-    <!-- Downloads Section -->
     <section id="downloads" class="downloads-section">
         <div class="container">
             <div class="section-header">
@@ -724,122 +579,11 @@
                 <h2 class="section-title">Software Downloads</h2>
                 <p class="section-subtitle">Direct download links for my latest tools and applications</p>
             </div>
-
-            <div class="downloads-grid">
-                <div class="download-card">
-                    <div class="download-card-header">
-                        <i class="fas fa-download download-icon"></i>
-                        <span class="version-badge">v1.4</span>
-                    </div>
-                    <h3>Secure Vault</h3>
-                    <p>Portable version of Secure Vault password manager.</p>
-                    <div class="checksum-value" title="Click to copy SHA-256 hash">SHA-256:
-                        <code>43e42484e0f560b9301ac74ba99b998babba64f66bf09f096406818279ea07ed</code>
-                    </div>
-                    <div class="download-footer">
-                        <span class="file-type">ZIP Archive</span>
-                        <div class="footer-actions">
-                            <a href="https://www.virustotal.com/gui/file/43e42484e0f560b9301ac74ba99b998babba64f66bf09f096406818279ea07ed"
-                                class="vt-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-shield-alt"></i> VirusTotal
-                            </a>
-                            <a href="https://github.com/dipta-roy/SecureVault/releases/download/v1.4/SecureVault.1.4.Portable.zip"
-                                class="download-link">Download Now →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PlanIFlow 2.7.0 -->
-                <div class="download-card">
-                    <div class="download-card-header">
-                        <i class="fas fa-download download-icon"></i>
-                        <span class="version-badge">v2.4.0</span>
-                    </div>
-                    <h3>PlanIFlow</h3>
-                    <p>An offline project management tool.</p>
-                    <div class="checksum-value" title="Click to copy SHA-256 hash">SHA-256:
-                        <code>2b437fd3b2d6b627d79542de9487cdcf42e5f0e48ada15694e9c256f5bc6882a</code>
-                    </div>
-                    <div class="download-footer">
-                        <span class="file-type">MSI Executable</span>
-                        <div class="footer-actions">
-                            <a href="https://www.virustotal.com/gui/file/2b437fd3b2d6b627d79542de9487cdcf42e5f0e48ada15694e9c256f5bc6882a"
-                                class="vt-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-shield-alt"></i> VirusTotal
-                            </a>
-                            <a href="https://github.com/dipta-roy/PlanIFlow/releases/download/v2.7/PlanIFlow_Setup_2.7.0.msi"
-                                class="download-link">Download Now →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TwinScope 1.1 -->
-                <div class="download-card">
-                    <div class="download-card-header">
-                        <i class="fas fa-download download-icon"></i>
-                        <span class="version-badge">v1.1</span>
-                    </div>
-                    <h3>TwinScope</h3>
-                    <p>A cross-platform file and folder comparison tool</p>
-                    <div class="checksum-value" title="Click to copy SHA-256 hash">SHA-256:
-                        <code>ab4e6ad7d1d69cf61f7281129ee847d128d254ee587a7cc4ae282880e28b4e28</code>
-                    </div>
-                    <div class="download-footer">
-                        <span class="file-type">MSI Executable</span>
-                        <div class="footer-actions">
-                            <a href="https://www.virustotal.com/gui/file/ab4e6ad7d1d69cf61f7281129ee847d128d254ee587a7cc4ae282880e28b4e28"
-                                class="vt-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-shield-alt"></i> VirusTotal
-                            </a>
-                            <a href="https://github.com/dipta-roy/TwinScope/releases/download/v1.1/TwinScope_Setup_1.1.0.msi"
-                                class="download-link">Download Now →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Threat Pilot -->
-                <div class="download-card">
-                    <div class="download-card-header">
-                        <i class="fas fa-download download-icon"></i>
-                        <span class="version-badge">v3.2.0</span>
-                    </div>
-                    <h3>ThreatPilot</h3>
-                    <p>ThreatPilot is an advanced, AI-driven threat modeling application designed specifically for cyber
-                        security architects and engineers.</p>
-                    <div class="checksum-value" title="Click to copy SHA-256 hash">SHA-256:
-                        <code>7007a68a9a9a84f4a936fdf8160c04fc611eb58eed68be06815e05f201b2acc5</code>
-                    </div>
-                    <div class="download-footer">
-                        <span class="file-type">MSI Executable</span>
-                        <div class="footer-actions">
-                            <a href="https://www.virustotal.com/gui/file/7007a68a9a9a84f4a936fdf8160c04fc611eb58eed68be06815e05f201b2acc5"
-                                class="vt-link" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-shield-alt"></i> VirusTotal
-                            </a>
-                            <a href="https://github.com/dipta-roy/ThreatPilot/releases/download/Release-3.2.0/ThreatPilot-3.2.0-win64.msi"
-                                class="download-link">Download Now →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="https://github.com/dipta-roy/dipta-roy.github.io/blob/main/downloads/Code%20Verifying%20Certificates.zip"
-                    class="download-card">
-                    <div class="download-card-header">
-                        <i class="fas fa-certificate download-icon"></i>
-                        <span class="version-badge">Cert</span>
-                    </div>
-                    <h3>Code Verifying Certificate</h3>
-                    <p>Public certificate for verifying code signatures.</p>
-                    <div class="download-footer">
-                        <span class="file-type">ZIP Archive</span>
-                        <span class="download-link">Download Now →</span>
-                    </div>
-                </a>
+            <div id="downloads-grid-container" class="downloads-grid">
             </div>
         </div>
     </section>
 
-    <!-- Other Links Section -->
     <section id="others" class="contact-section">
         <div class="container">
             <div class="section-header">
@@ -849,7 +593,6 @@
             </div>
 
             <div class="downloads-grid">
-                <!-- Career Map -->
                 <a href="career-map.html" class="download-card">
                     <div class="download-card-header">
                         <i class="fa fa-sitemap"></i>
@@ -860,8 +603,6 @@
                         <span class="download-link">Explore Map →</span>
                     </div>
                 </a>
-
-                <!-- Chess -->
                 <a href="https://dipta-roy.github.io/chess" class="download-card">
                     <div class="download-card-header">
                         <i class="fa fa-gamepad"></i>
@@ -872,8 +613,6 @@
                         <span class="download-link">Play Now →</span>
                     </div>
                 </a>
-
-                <!-- Snake game -->
                 <a href="https://dipta-roy.github.io/snake" class="download-card">
                     <div class="download-card-header">
                         <i class="fa fa-gamepad"></i>
@@ -884,8 +623,6 @@
                         <span class="download-link">Play Now →</span>
                     </div>
                 </a>
-
-                <!-- Digital Clock -->
                 <a href="https://dipta-roy.github.io/clock" class="download-card">
                     <div class="download-card-header">
                         <i class="fa fa-gamepad"></i>
@@ -899,8 +636,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Certifications Section -->
     <section id="certifications" class="certifications-section">
         <div class="container">
             <div class="section-header">
@@ -971,8 +706,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="section-header">
@@ -989,7 +722,7 @@
                         <p class="contact-card-action">Let's Connect →</p>
                         <p class="contact-card-desc">Professional networking, security discussions & inquiries</p>
                     </a>
-                    
+
                     <a href="https://github.com/dipta-roy" target="_blank" rel="noopener noreferrer"
                         class="contact-card card-github">
                         <div class="contact-card-icon"><i class="fab fa-github"></i></div>
@@ -1010,14 +743,13 @@
                         <div class="contact-card-icon"><i class="fas fa-shield-alt"></i></div>
                         <h3>Security Advisory</h3>
                         <p class="contact-card-action">Consultation →</p>
-                        <p class="contact-card-desc">Threat modeling, compliance gap assessments & secure SDLC advisory</p>
+                        <p class="contact-card-desc">Threat modeling, compliance gap assessments & secure SDLC advisory
+                        </p>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -1042,6 +774,16 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
+    </script>
+    <script src="assets/data/portfolio.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
