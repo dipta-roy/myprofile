@@ -275,8 +275,8 @@ window.addEventListener('load', function () {
 						row.id = 'move-row-' + fullMoveCount;
 
 						row.innerHTML = '<span style="opacity:0.5;width:25px;font-weight:bold;">' + fullMoveCount + '.</span>' +
-							'<span style="flex:1;text-align:left;font-family:\'Segoe UI Symbol\',serif;">' + moveStr + '</span>' +
-							'<span class="black-move" style="flex:1;text-align:left;font-family:\'Segoe UI Symbol\',serif;"></span>';
+							'<span style="flex:1;text-align:left;font-family:\'Noto Sans Symbols 2\',\'Noto Sans Symbols\',\'Segoe UI Symbol\',sans-serif;">' + moveStr + '</span>' +
+							'<span class="black-move" style="flex:1;text-align:left;font-family:\'Noto Sans Symbols 2\',\'Noto Sans Symbols\',\'Segoe UI Symbol\',sans-serif;"></span>';
 						historyList.appendChild(row);
 					} else {
 						var row = document.getElementById('move-row-' + fullMoveCount);

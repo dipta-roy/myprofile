@@ -161,7 +161,7 @@ body {
 	align-content: flex-start;
 	align-items: center;
 	gap: 4px;
-	font-family: 'Segoe UI Symbol', 'Noto Sans Symbols 2', serif;
+	font-family: 'Noto Sans Symbols 2', 'Noto Sans Symbols', 'Segoe UI Symbol', sans-serif;
 	width: 100%;
 	overflow-y: auto;
 }
@@ -330,7 +330,7 @@ body {
 	text-align: center !important;
 	vertical-align: middle !important;
 	overflow: hidden !important;
-	font-family: 'Segoe UI Symbol', 'Noto Sans Symbols 2', serif !important;
+	font-family: 'Noto Sans Symbols 2', 'Noto Sans Symbols', 'Segoe UI Symbol', sans-serif !important;
 }
 
 #game td:hover {
@@ -416,15 +416,27 @@ body {
 	}
 
 	#game table {
-		width: 95vw !important;
-		height: 95vw !important;
-		border-width: 4px !important;
+		width: 98vw !important;
+		height: 98vw !important;
+		max-width: 98vw !important;
+		max-height: 98vw !important;
+		border-width: 2px !important;
+	}
+
+	#game tr {
+		height: 12.25vw !important;
+		max-height: 12.25vw !important;
 	}
 
 	#game td {
-		font-size: 11vw !important;
+		font-size: 11.5vw !important;
+		line-height: 12.25vw !important;
 		width: 12.5% !important;
-		height: 12.5% !important;
+		height: 12.25vw !important;
+		min-width: 0 !important;
+		min-height: 0 !important;
+		max-width: none !important;
+		max-height: none !important;
 	}
 
 	.clock ul li {
@@ -436,8 +448,8 @@ body {
 	}
 
 	.main-container {
-		padding: 10px;
-		gap: 20px;
+		padding: 4px;
+		gap: 15px;
 	}
 
 	.info-panel {
