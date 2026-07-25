@@ -43,11 +43,11 @@ const portfolioData = {
       "url": "https://github.com/dipta-roy/FaceGallery"
     },
     {
-      "title": "SBOM Parser",
-      "description": "A clean, modern desktop GUI tool to parse SBOM files and export them to CSV.",
+      "title": "SBOM Suite",
+      "description": "Modern desktop GUI tools to easily generate SBOMs from source code and parse SPDX/CycloneDX files into clean CSVs.",
       "categories": "security-tools",
       "language": "Python",
-      "url": "https://dipta-roy.github.io/SBOM_Parser/"
+      "url": "https://dipta-roy.github.io/SBOM_Suite/"
     },
     {
       "title": "Microsoft Baseline Scan",
