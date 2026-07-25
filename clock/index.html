@@ -1,109 +1,203 @@
-<html>
-	<head>
-		<title> Digital Clock</title>
-		<link rel="icon" href="images/clock.png" type="image/x-icon" />
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-2EZ7F16X02"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() { dataLayer.push(arguments); }
-			gtag('js', new Date());
-			gtag('config', 'G-2EZ7F16X02');
-		</script>
-		<meta name="description" content="Digital Clock designed to use as screensaver. Kindly change  view to sull screen using F11 and enjoy this. For more details contact Dipta at https://www.diptaroy.tk">
-		<meta name="author" content="Dipta Roy">
-		<script type="text/javascript" src="../snake/jquery-1.5.2.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
-				var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-				var newDate = new Date();
-				newDate.setDate(newDate.getDate());
-				$('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
-				setInterval( function() {
-					var seconds = new Date().getSeconds();
-					$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-				},1000);
-				setInterval( function() {
-					var minutes = new Date().getMinutes();
-					$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-				},1000);
-				setInterval( function() {
-					var hours = new Date().getHours();
-					$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
-					}, 1000); 
-				});
-		</script>
-		<style>
-			.clock {
-				width: 660px;
-				margin: 0 auto;
-				margin-top:100px;
-				padding: 30px;
-				color: #FFF;
-				background:#000;
-				box-shadow: 0 1px 10px #55c6ff, 0 1px 10px #55c6ff;
-			}
-			#body	{
-				background:#000;
-			}
-			.clock ul {
-				width: 550px;
-				margin: 0 auto;
-				padding: 0;
-				list-style: none;
-				text-align: center
-			}
-			.clock ul li {
-				display: inline;
-				font-size: 5em;
-				text-align: center;
-				font-family: "Arial", Helvetica, sans-serif;
-				text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff
-			}
-			#Date { 
-				font-family: 'Arial', Helvetica, sans-serif;
-				font-size: 46px;
-				text-align: center;
-				text-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff;
-				padding-bottom: 40px;
-			}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Digital Clock | Dipta Roy</title>
+	<link rel="icon" href="images/clock.png" type="image/x-icon" />
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-2EZ7F16X02"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+		gtag('config', 'G-2EZ7F16X02');
+	</script>
+	<meta name="description" content="A beautifully designed modern glassmorphism Digital Clock and screensaver. Features a 12-hour format, AM/PM indicator, and full-screen support (F11). Developed by Dipta Roy.">
+	<meta name="keywords" content="Digital Clock, Screensaver, Glassmorphism, 3D UI, Clock App, Dipta Roy, Browser Clock">
+	<meta name="author" content="Dipta Roy">
+	<!-- Use Google Fonts (Outfit) -->
+	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+	
+	<style>
+		* {
+			box-sizing: border-box;
+		}
 
-			#point {
-				position: relative;
-				-moz-animation: mymove 1s ease infinite;
-				-webkit-animation: mymove 1s ease infinite;
-				padding-left: 10px;
-				padding-right: 10px
-			}
+		body {
+			background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+			background-attachment: fixed;
+			margin: 0;
+			padding: 0;
+			font-family: 'Outfit', sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			color: #f8fafc;
+			overflow: hidden;
+		}
 
-			@-webkit-keyframes mymove {
-				0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
-				50% {opacity:0; text-shadow:none; }
-				100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; } 
-			}
+		.glass-clock {
+			background: rgba(255, 255, 255, 0.05);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			border: 1px solid rgba(255, 255, 255, 0.1);
+			border-radius: 30px;
+			box-shadow: 
+				0 25px 50px rgba(0, 0, 0, 0.5),
+				0 10px 20px rgba(0, 0, 0, 0.3),
+				inset 0 1px 1px rgba(255, 255, 255, 0.2);
+			padding: 60px 80px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			perspective: 1000px;
+			transition: transform 0.4s ease, box-shadow 0.4s ease;
+		}
 
-			@-moz-keyframes mymove {
-				0% {opacity:1.0; text-shadow:0 0 20px #00c6ff;}
-				50% {opacity:0; text-shadow:none; }
-				100% {opacity:1.0; text-shadow:0 0 20px #00c6ff; } 
-			}
-			fieldset	{
-				widhh:50%;
-				box-shadow: 0 2px 5px #55c6ff, 0 3px 6px #55c6ff;
-				
-			}
-		</style>
-	</head>
-	<body id="body">
-		<div class="clock">
-			<div id="Date"></div>
-			<ul>
-				<li id="hours"></li>
-				<li id="point">:</li>
-				<li id="min"></li>
-				<li id="point">:</li>
-				<li id="sec"></li>
-			</ul>
+		.glass-clock:hover {
+			transform: translateY(-5px) rotateX(2deg);
+			box-shadow: 
+				0 35px 60px rgba(0, 0, 0, 0.6),
+				0 15px 25px rgba(0, 0, 0, 0.4),
+				inset 0 1px 2px rgba(255, 255, 255, 0.3);
+		}
+
+		#Date { 
+			font-size: 2em;
+			font-weight: 600;
+			color: #94a3b8;
+			margin-bottom: 20px;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+		}
+
+		#Date sup {
+			text-transform: lowercase;
+		}
+
+		.time-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 15px;
+		}
+
+		.time-unit {
+			font-size: 8em;
+			font-weight: 800;
+			color: #38bdf8;
+			text-shadow: 0 0 30px rgba(56, 189, 248, 0.4), 2px 5px 0px rgba(0,0,0,0.5);
+			font-variant-numeric: tabular-nums;
+			background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
+		}
+
+		.colon {
+			font-size: 6em;
+			font-weight: 800;
+			color: #38bdf8;
+			text-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+			animation: blink 1s ease infinite;
+			margin-top: -10px;
+		}
+
+		@keyframes blink {
+			0%, 100% { opacity: 1; }
+			50% { opacity: 0.1; }
+		}
+
+		.ampm {
+			font-size: 3em;
+			font-weight: 700;
+			color: #38bdf8;
+			text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+			margin-left: 10px;
+			align-self: flex-end;
+			margin-bottom: 20px;
+		}
+
+		@media (max-width: 900px) {
+			.glass-clock { padding: 40px; }
+			.time-unit { font-size: 5em; }
+			.colon { font-size: 4em; margin-top: -5px; }
+			.ampm { font-size: 2em; margin-bottom: 10px; }
+			#Date { font-size: 1.5em; }
+		}
+
+		@media (max-width: 500px) {
+			.glass-clock { padding: 30px 20px; }
+			.time-unit { font-size: 3.5em; }
+			.colon { font-size: 2.5em; margin-top: 0; }
+			.ampm { font-size: 1.5em; margin-bottom: 5px; }
+			#Date { font-size: 1.2em; }
+			.time-container { gap: 5px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="glass-clock">
+		<div id="Date">Loading...</div>
+		<div class="time-container">
+			<div class="time-unit" id="hours">00</div>
+			<div class="colon">:</div>
+			<div class="time-unit" id="min">00</div>
+			<div class="colon">:</div>
+			<div class="time-unit" id="sec">00</div>
+			<div class="ampm" id="ampm">AM</div>
 		</div>
-	</body>
+	</div>
+
+	<script type="text/javascript">
+		// Pure JS instead of jQuery for better performance
+		document.addEventListener("DOMContentLoaded", () => {
+			const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			
+			const dateEl = document.getElementById("Date");
+			const hoursEl = document.getElementById("hours");
+			const minEl = document.getElementById("min");
+			const secEl = document.getElementById("sec");
+			const ampmEl = document.getElementById("ampm");
+
+			function getOrdinalSuffix(n) {
+				const s = ["th", "st", "nd", "rd"];
+				const v = n % 100;
+				return s[(v - 20) % 10] || s[v] || s[0];
+			}
+
+			function updateClock() {
+				const now = new Date();
+				
+				// Update Date
+				const dayName = dayNames[now.getDay()].toUpperCase();
+				const dayNum = now.getDate();
+				const month = monthNames[now.getMonth()];
+				const year = now.getFullYear();
+				dateEl.innerHTML = `${dayNum}<sup>${getOrdinalSuffix(dayNum)}</sup> ${month} ${year}, ${dayName}`;
+
+				// Update Time
+				let h = now.getHours();
+				const m = now.getMinutes();
+				const s = now.getSeconds();
+				const ampm = h >= 12 ? 'PM' : 'AM';
+				
+				h = h % 12;
+				h = h ? h : 12; // the hour '0' should be '12'
+				
+				hoursEl.textContent = h < 10 ? "0" + h : h;
+				minEl.textContent = m < 10 ? "0" + m : m;
+				secEl.textContent = s < 10 ? "0" + s : s;
+				ampmEl.textContent = ampm;
+			}
+
+			// Initialize and loop
+			updateClock();
+			setInterval(updateClock, 1000);
+		});
+	</script>
+</body>
 </html>
