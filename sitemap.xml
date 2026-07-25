@@ -35,4 +35,34 @@
   <changefreq>weekly</changefreq>
   <priority>1.00</priority>
 </url>
+<url>
+  <loc>https://dipta-roy.github.io/PlanIFlow/</loc>
+  <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dipta-roy.github.io/SecureVault/</loc>
+  <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dipta-roy.github.io/TwinScope/</loc>
+  <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dipta-roy.github.io/SBOM_Suite/</loc>
+  <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://dipta-roy.github.io/ThreatPilot/</loc>
+  <lastmod>2026-07-25T00:00:00+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
 </urlset>
