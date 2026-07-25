@@ -5,21 +5,21 @@ const portfolioData = {
       "description": "Advanced project planning and workflow management tool",
       "categories": "utilities",
       "language": "Python",
-      "url": "https://github.com/dipta-roy/PlanIFlow"
+      "url": "https://dipta-roy.github.io/PlanIFlow/"
     },
     {
       "title": "SecureVault",
       "description": "Local password manager with advanced security features",
       "categories": "security-tools",
       "language": "Python",
-      "url": "https://github.com/dipta-roy/SecureVault"
+      "url": "https://dipta-roy.github.io/SecureVault/"
     },
     {
       "title": "TwinScope",
       "description": "TwinScope is a cross-platform file and folder comparison tool",
       "categories": "utilities",
       "language": "Python",
-      "url": "https://github.com/dipta-roy/TwinScope"
+      "url": "https://dipta-roy.github.io/TwinScope/"
     },
     {
       "title": "Windows Analyzer",
@@ -47,7 +47,7 @@ const portfolioData = {
       "description": "A clean, modern desktop GUI tool to parse SBOM files and export them to CSV.",
       "categories": "security-tools",
       "language": "Python",
-      "url": "https://github.com/dipta-roy/SBOM_Parser"
+      "url": "https://dipta-roy.github.io/SBOM_Parser/"
     },
     {
       "title": "Microsoft Baseline Scan",
@@ -61,7 +61,7 @@ const portfolioData = {
       "description": "ThreatPilot is an advanced, AI-driven threat modeling application designed specifically for cyber security architects and engineers",
       "categories": "ai security-tools",
       "language": "Python",
-      "url": "https://github.com/dipta-roy/ThreatPilot"
+      "url": "https://dipta-roy.github.io/ThreatPilot/"
     },
     {
       "title": "AdvLens",
