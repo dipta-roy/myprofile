@@ -1,42 +1,93 @@
-<html>
-	<head>
-		<title>Snake Game</title>
-		<link rel="icon" href="bug.png" type="image/x-icon" />
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-2EZ7F16X02"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		  gtag('config', 'G-2EZ7F16X02');
-		</script>
-		<meta name="description" content="Snake game developed by Dipta Roy. This game is designed for PC use only.">
-		<script type="text/javascript" src="jquery-1.5.2.min.js"></script> 
-		<link rel="stylesheet" href="style.css"/>
-	</head>
-	<body id="game"><table border="0" width="100%">
-	<tr>
-		<td style="width:25%;">
-			<div class="clock">
-				<div id="Date"></div>
-				<ul>
-					<li id="hours"></li>
-					<li id="point">:</li>
-					<li id="min"></li>
-					<li id="point">:</li>
-					<li id="sec"></li>
-				</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Classic Snake Game | Dipta Roy</title>
+	<link rel="icon" href="bug.png" type="image/x-icon" />
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-2EZ7F16X02"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-2EZ7F16X02');
+	</script>
+	<meta name="description" content="Play the classic Snake game featuring a modern 3D glassmorphism UI and responsive touch swipe controls. Developed by Dipta Roy.">
+	<meta name="keywords" content="Snake Game, Browser Game, Dipta Roy, 3D UI, HTML5 Game, JavaScript Snake">
+	<script type="text/javascript" src="jquery-1.5.2.min.js"></script> 
+	<link rel="stylesheet" href="style.css"/>
+</head>
+<body id="game">
+	<div class="glass-container">
+		<div class="side-panel">
+
+		</div>
+
+		<div id="game_panel">
+			<div id="div_main"></div>
+		</div>
+
+		<div class="side-panel">
+			<a href="javascript:location.reload();" class="myButton">Reload</a>
+		</div>
+	</div>
+
+	<!-- Custom Game Over Modal -->
+	<div id="gameOverModal" class="modal-overlay">
+		<div class="modal-content glass-container">
+			<h2>Game Over!</h2>
+			<p>You crashed. Do you wish to continue playing?</p>
+			<div class="modal-buttons">
+				<button class="myButton modal-btn" onclick="continueGame()">Continue</button>
+				<button class="myButton modal-btn cancel-btn" onclick="quitGame()">Quit</button>
 			</div>
-		</td>
-		<td >
-			<center id="game_panel">
-				<div id="div_main"/>
-			</center>
-		</td>
-		<td>
-			<a href="https://dipta-roy.github.io/snake" class="myButton">Reload</a>
-		</td>
-	</tr>		
-	</body>
+		</div>
+	</div>
+
 	<script type="text/javascript" src="game.js"></script> 
-		
+	<script>
+		let touchstartX = 0;
+		let touchstartY = 0;
+		const gamePanel = document.getElementById('game_panel');
+
+		gamePanel.addEventListener('touchstart', e => {
+			touchstartX = e.changedTouches[0].screenX;
+			touchstartY = e.changedTouches[0].screenY;
+			e.preventDefault(); 
+		}, {passive: false});
+
+		gamePanel.addEventListener('touchmove', e => {
+			let touchX = e.changedTouches[0].screenX;
+			let touchY = e.changedTouches[0].screenY;
+			let diffX = touchX - touchstartX;
+			let diffY = touchY - touchstartY;
+			
+			// Threshold to trigger turn without lifting finger
+			const threshold = 20; 
+			
+			if (Math.abs(diffX) > Math.abs(diffY)) {
+				if (diffX > threshold) {
+					window.dir = 4; // Right
+					touchstartX = touchX; // Reset to allow continuous turns
+					touchstartY = touchY;
+				} else if (diffX < -threshold) {
+					window.dir = 2; // Left
+					touchstartX = touchX;
+					touchstartY = touchY;
+				}
+			} else {
+				if (diffY > threshold) {
+					window.dir = 1; // Down
+					touchstartX = touchX;
+					touchstartY = touchY;
+				} else if (diffY < -threshold) {
+					window.dir = 3; // Up
+					touchstartX = touchX;
+					touchstartY = touchY;
+				}
+			}
+			e.preventDefault();
+		}, {passive: false});
+	</script>
+</body>
 </html>

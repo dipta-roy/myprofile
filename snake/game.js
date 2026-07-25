@@ -1,7 +1,6 @@
 var speed=150;
  var dir=1;
  var snake=["3_10","2_10","1_10"];
- var score=0;
  var bug=""; 
  function myinit(){
 	dir=1;
@@ -50,19 +49,12 @@ var speed=150;
 			$('#c_'+bug).removeClass('cell');
 			speed= speed - 5;
 			generatebug();
-			
-			
+		}
+		if (c<0 || r<0 || c>19 || r>19 || $('#c_'+nn).hasClass('cell_bg') ){
+			$('#gameOverModal').css('display', 'flex');
+			return; // stop the loop and wait for user input
 		}
 		snake.unshift(nn);
-		$('#c_'+nn).hasClass('cell_bg'); 
-		if (c<0 || r<0 || c>19 || r>19 ||  $('#c_'+nn).hasClass('cell_bg') ){
-			if(!confirm('You Lost! Do you wish to continue?'))	{
-				window.top.close();
-			}
-			speed=150;
-			myinit();
-			return;
-		}  
 		$('#c_'+nn).addClass('cell_bg');       
 		setTimeout(function(){gameupdate()}, speed);
 	} 
@@ -77,22 +69,14 @@ var speed=150;
 		dir=1;
 	}
 });
-$(document).ready(function() {
-	var monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]; 
-	var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
-	var newDate = new Date();
-	newDate.setDate(newDate.getDate());
-	$('#Date').html(dayNames[newDate.getDay()] + " " + newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
-	setInterval( function() {
-		var seconds = new Date().getSeconds();
-		$("#sec").html(( seconds < 10 ? "0" : "" ) + seconds);
-	},1000);
-	setInterval( function() {
-		var minutes = new Date().getMinutes();
-		$("#min").html(( minutes < 10 ? "0" : "" ) + minutes);
-	},1000);
-	setInterval( function() {
-		var hours = new Date().getHours();
-		$("#hours").html(( hours < 10 ? "0" : "" ) + hours);
-		}, 1000); 
-	});
+
+function continueGame() {
+	$('#gameOverModal').css('display', 'none');
+	speed = 150;
+	myinit();
+}
+
+function quitGame() {
+	$('#gameOverModal').css('display', 'none');
+	$('#div_main').html("");
+}

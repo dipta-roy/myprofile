@@ -1,133 +1,223 @@
-.curr_cell	{
-	background:#ffe1c7;
-	width:20px;
-	height:20px;
-	float:left;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+* {
+	box-sizing: border-box;
 }
-.cell_bg	{
-	background:#94440a;
-	}
-.cell	{
-	background-image:url('bug.png');
-	background-repeat:no-repeat;
-}
-#div_main	{
-	width:400px;
-	height:400px;
-	padding:0px;
-	margin:0px;
-	border:10px solid #4c1d00;
-}	
-#game	{
-	background:rgba(236, 255, 178, 0.68);
-}
-#game_panel	{
-	margin-top:50px;
-}
-.clock {
-	width: 260px;
-	margin: left;
-	padding: 30px;
-	color: #FFF;
-}
-.clock ul {
-	width: 250px; 
-	margin: 0 auto;
+
+body#game {
+	background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+	background-attachment: fixed;
+	margin: 0;
 	padding: 0;
-	list-style: none;
-	text-align: center;	
+	font-family: 'Outfit', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	color: #f8fafc;
+	overflow-x: hidden;
+}
+
+/* Glassmorphic 3D Container */
+.glass-container {
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 24px;
+	box-shadow: 
+		0 25px 50px rgba(0, 0, 0, 0.5),
+		0 10px 20px rgba(0, 0, 0, 0.3),
+		inset 0 1px 1px rgba(255, 255, 255, 0.2);
+	padding: 40px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 50px;
+	perspective: 1000px;
+	transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (max-width: 900px) {
+	.glass-container {
+		flex-direction: column;
+		padding: 20px;
+		gap: 20px;
 	}
-.clock ul li {
-	display: inline;
-	font-size: 3em;
-	text-align: center;
-	font-family: "Arial", Helvetica, sans-serif;
-	text-shadow: 0 2px 5px #021c29, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff;
 }
-.clock ul li {
-	display: inline;
-	font-size: 3em;
-	text-align: center;
-	font-family: "Arial", Helvetica, sans-serif;
-	text-shadow: 0 2px 5px #021c29, 0 3px 6px #55c6ff, 0 4px 7px #55c6ff;
+
+/* Side Panels */
+.side-panel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
 }
-#Date { 
-	font-family: 'Arial', Helvetica, sans-serif;
-	font-size: 26px;
-	text-align: center;
-	text-shadow: 0 2px 5px #000000, 0 3px 6px #4fa7d4;
-	padding-bottom: 40px;
+
+/* Game Board */
+#game_panel {
+	margin: 0;
 }
-#point {
-	position: relative;	
-	-moz-animation: mymove 1s ease infinite;
-	-webkit-animation: mymove 1s ease infinite;
-	padding-left: 10px;
-	padding-right: 10px;
-	color: rgba(96, 79, 160, 0.84);
+
+#div_main {
+	width: 400px;
+	height: 400px;
+	box-sizing: content-box;
+	border: 4px solid rgba(56, 189, 248, 0.3);
+	border-radius: 12px;
+	background: rgba(15, 23, 42, 0.8);
+	box-shadow: 
+		inset 0 0 30px rgba(0, 0, 0, 0.8),
+		0 0 20px rgba(56, 189, 248, 0.2);
+	position: relative;
+	transform-style: preserve-3d;
 }
-@-webkit-keyframes mymove {
-	0% {
-		opacity:1.0; 
-		text-shadow:0 0 20px #00c6ff;
-	}	
-	50% {
-		opacity:0; text-shadow:none; 
-	}	
-	100% {
-		opacity:1.0; 
-		text-shadow:0 0 20px #00c6ff; 
-		}
+
+/* Scale board for very small screens */
+@media (max-width: 450px) {
+	#div_main {
+		transform: scale(0.8);
+		transform-origin: top center;
+		margin-bottom: -80px;
 	}
-@-moz-keyframes mymove {
-	0% {
-		opacity:1.0; 
-		text-shadow:0 0 20px #00c6ff;
-	}	50% {opacity:0; 
-		text-shadow:none; 
-	}	100% {opacity:1.0; 
-		text-shadow:0 0 20px #00c6ff; 
-	} 	
 }
+
+/* Cells */
+.curr_cell {
+	background: rgba(255, 255, 255, 0.02);
+	border: 1px solid rgba(255, 255, 255, 0.04);
+	width: 20px;
+	height: 20px;
+	float: left;
+	box-sizing: border-box;
+}
+
+.cell_bg {
+	background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%) !important;
+	border-radius: 4px;
+	/* Create a 3D block effect for the snake */
+	box-shadow: 
+		1px 1px 0 #0284c7, 
+		2px 2px 0 #0369a1, 
+		3px 3px 0 #075985, 
+		4px 4px 5px rgba(0,0,0,0.6) !important;
+	border: none !important;
+	transform: translate(-2px, -2px);
+}
+
+.cell {
+	background-color: #f43f5e !important;
+	background-image: url('bug.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 14px 14px;
+	border-radius: 50%;
+	/* 3D sphere effect for the bug */
+	box-shadow: 
+		inset -3px -3px 6px rgba(0,0,0,0.3),
+		inset 2px 2px 6px rgba(255,255,255,0.5),
+		0 0 15px #f43f5e,
+		3px 3px 5px rgba(0,0,0,0.5) !important;
+	border: none !important;
+	animation: pulseBug 1s ease-in-out infinite alternate;
+	transform: translateZ(10px);
+}
+
+@keyframes pulseBug {
+	0% { transform: scale(0.85); box-shadow: 0 0 8px #f43f5e; }
+	100% { transform: scale(1.1); box-shadow: 0 0 20px #f43f5e; }
+}
+
+/* Button */
 .myButton { 
-	margin-top:30px;
-	margin-left:50px;
-	-moz-box-shadow: 4px 13px 26px -4px #276873;
-	-webkit-box-shadow: 4px 13px 26px -4px #276873;	
-	box-shadow: 4px 13px 26px -4px #276873;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #599bb3), color-stop(1, #408c99));	
-	background:-moz-linear-gradient(top, #599bb3 5%, #408c99 100%);	
-	background:-webkit-linear-gradient(top, #599bb3 5%, #408c99 100%);	
-	background:-o-linear-gradient(top, #599bb3 5%, #408c99 100%);	
-	background:-ms-linear-gradient(top, #599bb3 5%, #408c99 100%);	
-	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#599bb3', endColorstr='#408c99',GradientType=0);	
-	background-color:#599bb3;
-	-moz-border-radius:15px;
-	-webkit-border-radius:15px;	
-	border-radius:15px;
-	border:2px solid #29668f;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:20px;
-	font-weight:bold;
-	padding:12px 46px;
-	text-decoration:none;	
-	text-shadow:0px 8px 0px #3d768a;
+	background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 50px;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: 'Outfit', sans-serif;
+	font-size: 18px;
+	font-weight: 700;
+	padding: 12px 30px;
+	text-decoration: none;	
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	box-shadow: 
+		0 8px 20px rgba(56, 189, 248, 0.3),
+		0 4px 0px #1e40af,
+		inset 0 1px 1px rgba(255, 255, 255, 0.4);
+	transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .myButton:hover {	
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #408c99), color-stop(1, #599bb3));	
-	background:-moz-linear-gradient(top, #408c99 5%, #599bb3 100%);	
-	background:-webkit-linear-gradient(top, #408c99 5%, #599bb3 100%);	
-	background:-o-linear-gradient(top, #408c99 5%, #599bb3 100%);	
-	background:-ms-linear-gradient(top, #408c99 5%, #599bb3 100%);	
-	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#408c99', endColorstr='#599bb3',GradientType=0);	
-	background-color:#408c99;
+	transform: translateY(-2px);
+	box-shadow: 
+		0 12px 25px rgba(56, 189, 248, 0.4),
+		0 5px 0px #1e40af,
+		inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
+
 .myButton:active {	
-	position:relative;	
-	top:1px;
+	transform: translateY(2px) !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 0px #1e40af !important;
+}
+
+/* Modal Styles */
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(5px);
+	display: none;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.modal-content {
+	flex-direction: column;
+	padding: 40px 60px;
+	text-align: center;
+	gap: 20px;
+}
+
+.modal-content h2 {
+	margin: 0;
+	font-size: 2.5em;
+	color: #f43f5e;
+	text-shadow: 0 0 15px rgba(244, 63, 94, 0.5);
+}
+
+.modal-content p {
+	font-size: 1.2em;
+	color: #e2e8f0;
+	margin: 0 0 15px 0;
+}
+
+.modal-buttons {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+}
+
+.modal-btn {
+	padding: 10px 25px;
+	font-size: 16px;
+}
+
+.cancel-btn {
+	background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 4px 0px #334155, inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.cancel-btn:hover {
+	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4), 0 5px 0px #334155, inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.cancel-btn:active {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 1px 0px #334155 !important;
 }
